@@ -8,16 +8,26 @@ chai.use(chaiHttp);
 
 //describe tests
 describe('Server Application', function() {
-
-	it('should return status code 200 on / GET', function(done) {
-		
-		chai.request('http://localhost:3000').get('/')
-		.end(function(err, res) {
-			expect(err).to.be.null;
-			expect(res).to.have.status(200);
-			done();
+	describe('Confirm / Get Operations', function() {
+		//status code check
+		it('status code should be 200', function(done) {
+			//general get
+			chai.request('http://localhost:3000').get('/')
+			.end(function(err, res) {
+				expect(err).to.be.null;
+				expect(res).to.have.status(200);
+				done();
+			});
 		});
-
-	});	
+		//content check
+		it('content should be HTML', function(done) {
+			chai.request('http://localhost:3000').get('/')
+			.end(function(err, res) {
+				expect(res).to.be.html;
+				done();
+			});
+		});
+	});
+		
 
 });

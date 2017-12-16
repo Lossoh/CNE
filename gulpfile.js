@@ -6,3 +6,8 @@
 //define dependenceis
 var gulp 	= require('gulp');
 
+gulp.task('copy-html', function() {
+	//copy the index file
+	gulp.src('public/index.html')
+		.pipe(gulp.dest('dist'));
+});

@@ -29,6 +29,21 @@ var jsonParser = bodyParser.json();
 serverApp.use(jsonParser); // for parsing application/json
 serverApp.use(urlencodedParser); // for parsing application/x-www-form-urlencoded
 
+//serve up a static asset
+serverApp.use(express.static('dist'));
+
+//define our body parsers
+serverApp.use(jsonParser); // for parsing application/json
+serverApp.use(urlencodedParser); // for parsing application/x-www-form-urlencoded
+
+//track URL requests
+serverApp.use('/', function(req, res, next) {
+	//log the url to the console
+	console.log('Request Url: ' + req.url);
+
+	next();
+});
+
 
 
 /*
