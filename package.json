@@ -1,0 +1,29 @@
+{
+  "name": "cne",
+  "version": "0.0.0",
+  "description": "CNE company website",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianemcallister/CNE.git"
+  },
+  "keywords": [
+    "Ah-Nuts",
+    "homepage"
+  ],
+  "author": "Ian McAllister",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ianemcallister/CNE/issues"
+  },
+  "homepage": "https://github.com/ianemcallister/CNE#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "express": "^4.16.2",
+    "mocha": "^4.0.1",
+    "request": "^2.83.0"
+  }
+}
