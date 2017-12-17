@@ -63,7 +63,9 @@ serverApp.get('/', function(req, res) {
 */
 //open the port for local development
 serverApp.listen(port,function() {
+	//display the port
 	console.log('Express server is up and running on port ' + port);
+	//identify the environment
 	if(process.env.IS_PROUDCTION == 'true') console.log('is production')
 		else console.log('is development')
 });
