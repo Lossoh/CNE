@@ -7,6 +7,9 @@
 //define dependencies
 var fetch = require('node-fetch');
 
+//define global variables
+
+
 //define module
 var squareup = {
 	aTest: aTest
