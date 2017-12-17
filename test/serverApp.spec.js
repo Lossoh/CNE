@@ -8,6 +8,7 @@ chai.use(chaiHttp);
 
 //describe tests
 describe('Server Application', function() {
+	
 	describe('Confirm / Get Operations', function() {
 		//status code check
 		it('status code should be 200', function(done) {

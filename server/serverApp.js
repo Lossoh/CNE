@@ -50,8 +50,7 @@ serverApp.use('/', function(req, res, next) {
 *	GET Declarations
 */
 serverApp.get('/', function(req, res) {
-
-	//send back a status
+	//return an affirmative status code
 	res.sendStatus(200);
 });
 
@@ -65,4 +64,5 @@ serverApp.get('/', function(req, res) {
 //open the port for local development
 serverApp.listen(port,function() {
 	console.log('Express server is up and running on port ' + port);
+	console.log('Environment:', process.env.IS_PROUDCTION);
 });
