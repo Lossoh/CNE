@@ -29,12 +29,14 @@ if(process.env.IS_PROUDCTION == 'true') {
 //define module
 var squareup = {
 	_extractBuffer: _extractBuffer,
+	_extractLink: _extractLink,
 	bizAndLoc: bizAndLoc,
 	employees: employees,
 	roles: roles,
 	timecards: timecards,
 	cashDrawerShifts: cashDrawerShifts,
-	payments: payments,
+	listPayments: listPayments,
+	retrievePayments: retrievePayments,
 	settlements: settlements,
 	refunds: refunds,
 	orders: orders,
@@ -76,12 +78,127 @@ function _extractBuffer(buffer) {
 
 };
 
+function _extractLink(aLink) {
+	//define local variables
+	var self = this;
+
+	//console.log('aLink', aLink);
+	var halfPortions = aLink[0].split(";");
+	//console.log('halfPortions', halfPortions);
+	var frontSplit = halfPortions[0].split(">");
+	//console.log('frontSplit', frontSplit);
+	var rearSplit = frontSplit[0].split("<");
+	//console.log('rearSplit', rearSplit);
+	var url = rearSplit[1];
+
+	//console.log('got this url', url);
+
+	return url;
+};
+
 function bizAndLoc() {};
 function employees() {};
 function roles() {};
 function timecards() {};
 function cashDrawerShifts() {};
-function payments() {};
+
+/*
+*	LIST PAYMENTS
+*	
+*	This function returns payment details on payments/transactions taken.
+*
+*	@params locationId (string)
+*	@params timeframe (string)
+*	@return {allTransactions}
+*/
+function listPayments(locationId, timeframe, aLink) {
+	//define local variables
+	var self = this;
+	var thisUrl = baseURL + 'v1/' + locationId + '/payments?' + timeframe;
+	var options = {
+		method: 'GET',
+		headers: headers
+	};
+
+	//console.log('got this link', aLink);
+
+	//use link 
+	if(aLink != undefined) {
+		thisUrl = self._extractLink(aLink);
+	}
+
+	//return for async work
+	return new Promise(function(resolve, reject) {
+		//fetch the details
+		fetch(thisUrl, options)
+		.then(function success(s) {
+			
+			//upon success proceed
+			if(s.status == 200) {
+			
+				//retrieve buffer content
+				self._extractBuffer(s)
+				.then(function success(txsArray) {
+
+					//check for pagination
+					if(s.headers._headers.link != undefined) {
+
+						//notify of the curret location
+						//console.log('paging down now');
+
+						//run more async work
+						self.listPayments(locationId, timeframe, s.headers._headers.link)
+						.then(function success(newTxsArray) {
+
+							//console.log('got these', newTxsArray.length);
+
+							//combine the arrays, by iterating through
+							newTxsArray.forEach(function(tx) {
+
+								//push the new tx onto the returnable array
+								txsArray.push(tx);
+
+							});
+
+							//
+							//console.log('passing values back', txsArray.length);
+
+							//then send the values back
+							resolve(txsArray);
+
+						}).catch(function error(e) {
+
+						});	
+
+					} else {
+
+						//let us know that we hit the bottom
+						//console.log('got to the bottom', txsArray.length);
+
+						//pass the array of transactions back up
+						//resolve(txsArray);
+						resolve(txsArray);
+
+					}
+
+				}).catch(function error(ee) {
+
+				});
+
+			} else {
+				
+				reject(s);
+			}
+
+			//resolve(s);
+		}).catch(function error(e) {
+
+		});
+	});
+
+};
+
+function retrievePayments() {};
 function settlements() {};
 function refunds() {};
 function orders() {};
@@ -99,7 +216,7 @@ function chargeTransactions(locationId) {};
 /*
 *	LIST TRANSACTIONS
 *
-*	This function 
+*	This function returns payment summary on payments/transactions taken.
 *
 *	@params locationId (string)
 *	@params timeframe (string)
@@ -140,16 +257,11 @@ function listTransactions(locationId, timeframe, aCursor) {
 					if(ss.cursor != undefined) {
 
 						//notify of the curret location
-						console.log('paging down ');
+						//console.log('paging down ');
 						
 						//run more async work
 						self.listTransactions(locationId, timeframe, ss.cursor)
-						.then(function success(sss) {
-
-							//console.log('found ', sss);
-
-							//define local variables
-							var newTxsArray = sss;
+						.then(function success(newTxsArray) {
 
 							//combine the arrays, by iterating through
 							newTxsArray.forEach(function(tx) {
@@ -160,7 +272,7 @@ function listTransactions(locationId, timeframe, aCursor) {
 							});
 
 							//
-							console.log('passing values back', txsArray.length);
+							//console.log('passing values back', txsArray.length);
 
 							//then send the values back
 							resolve(txsArray);
@@ -172,7 +284,7 @@ function listTransactions(locationId, timeframe, aCursor) {
 					} else {
 
 						//let us know that we hit the bottom
-						console.log('got to the bottom', ss.transactions.length);
+						//console.log('got to the bottom', ss.transactions.length);
 
 						//pass the array of transactions back up
 						resolve(txsArray);

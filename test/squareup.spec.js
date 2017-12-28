@@ -21,7 +21,13 @@ describe('SquareUp API', function() {
 		describe('Roles', function() {});
 		describe('Timecards', function() {});
 		describe('Cash Drawer Shifts', function() {});
-		describe('Payments', function() {});
+		describe('Payments', function() {
+			describe('List', function() {
+				it('should return JSON list of transactions', function() {
+					expect(2).to.equal(2);
+				});
+			});
+		});
 		describe('Settlements', function() {});
 		describe('Refunds', function() {});
 		describe('Orders', function() {});
@@ -38,10 +44,17 @@ describe('SquareUp API', function() {
 	
 	//All the V2 functions
 	describe('v2', function() {
-		describe('Transactions', function() {});
+		describe('Transactions', function() {
+			describe('ListTransactions', function() {
+				it('should return JSON list of transactions', function() {
+					expect(2).to.equal(2);
+				});
+			});
+		});
+
 		describe('Locations', function() {
 			describe('ListLocations', function() {
-				it('should return JSON lost of locations', function() {
+				it('should return JSON list of locations', function() {
 					expect(2).to.equal(2);
 				});
 			});
