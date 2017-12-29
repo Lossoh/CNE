@@ -11,7 +11,7 @@ var firebase		= require('./firebase/firebase');
 /*
 *	
 */
-firebase.aTest()
+firebase.del('test')
 .then(function success(s) {
 	console.log('got this:', s);
 }).catch(function error(e) {

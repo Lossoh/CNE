@@ -8,7 +8,6 @@
 var express		= require('express');
 var bodyParser 	= require('body-parser');
 var favicon 	= require('serve-favicon');				//COME BACK TO THIS TO ADD
-var firebase		= require('./firebase/firebase');
 
 //return the express object
 var serverApp = express();
@@ -19,13 +18,6 @@ var port = process.env.PORT || 3000;
 //get the URL encoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var jsonParser = bodyParser.json();
-
-firebase.aTest()
-.then(function success(s) {
-	console.log('got this:', s);
-}).catch(function error(e) {
-
-});
 
 /*
 *	USE Declarations

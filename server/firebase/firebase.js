@@ -22,8 +22,6 @@ var serviceAccount = {
 	"client_x509_cert_url": 		process.env.FB_CLIENT_X509_CERT_URL
 };
 
-console.log(serviceAccount);
-
 // Initialize the app with a service account, granting admin privileges
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -32,7 +30,84 @@ admin.initializeApp({
 
 //define module
 var firebase = {
+	create: create,
+	read: read,
+	update: update,
+	del: del,
 	aTest: aTest
+};
+
+function create(path, data) {
+	//define local variables
+	var ref = admin.database().ref(path);
+
+	//return async work
+	return new Promise(function(resolve, reject) {
+
+		//hit the database
+		ref.set(data, function(error) {
+		if (error) {
+		  reject("Data could not be saved." + error);
+		} else {
+		  resolve("Data saved successfully.");
+		}
+		});
+
+	});
+
+};
+
+/*
+*	READ
+*	
+*	This function function collects data from firebase
+*/
+function read(path) {
+  
+	//define local variable
+	var ref = admin.database().ref(path);
+
+	//return async work
+	return new Promise(function(resolve, reject) {
+
+		//hit the database
+		ref.once("value")
+		.then(function(snapshot) {
+		    
+			//pass the data back
+			resolve(snapshot.val());
+
+		});
+
+	});
+
+};
+
+function update() {};
+
+/*
+*	DEL
+*
+*	This will delete a path that isn't wanted.
+*/
+function del(path) {
+	//define local variables
+	var ref = admin.database().ref(path);
+
+	//return async work
+	return new Promise(function(resolve, reject) {
+
+		//hit the database
+		ref.set(null, function(error) {
+		if (error) {
+		  reject("Data could not be saved." + error);
+		} else {
+		  resolve("Data saved successfully.");
+		}
+		});
+
+	});
+
 };
 
 /*
