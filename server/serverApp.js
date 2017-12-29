@@ -8,6 +8,7 @@
 var express		= require('express');
 var bodyParser 	= require('body-parser');
 var favicon 	= require('serve-favicon');				//COME BACK TO THIS TO ADD
+var firebase		= require('./firebase/firebase');
 
 //return the express object
 var serverApp = express();
