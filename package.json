@@ -26,6 +26,7 @@
     "express": "^4.16.2",
     "firebase-admin": "^5.6.0",
     "node-fetch": "^1.7.3",
+    "node-quickbooks": "^2.0.21",
     "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
