@@ -20,7 +20,12 @@ var port = process.env.PORT || 3000;
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var jsonParser = bodyParser.json();
 
+firebase.aTest()
+.then(function success(s) {
+	console.log('got this:', s);
+}).catch(function error(e) {
 
+});
 
 /*
 *	USE Declarations
