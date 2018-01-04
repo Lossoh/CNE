@@ -1,0 +1,43 @@
+{
+	"cme": {					//the parent customer/market/event
+		"id": "",
+		"online": {},
+		"title": ""				//what is this event called
+	},					
+	"job_day_block": "",		//hours that this job/day is scheduled to happen
+	"employees": {
+		"scheduled": [],		//who is expected to work
+		"actual": []			//who actually worked
+	},
+	"devices:": {
+		"scheduled": [],		//devices expcted to work
+		"actual": []			//devices that actually worked
+	},
+	"hours": {
+		"sales": {
+			"scheduled": {
+				"open": "",		//when sales are scheduled to start taking place
+				"close": ""		//when sales are scheduled to stop
+			},
+			"actual": {
+				"open": "",		//first sale or open time, whichever came first
+				"close": ""		//last sale or closing time, whichever came last
+			}
+		},			
+		"non-sales": []			//could be setup, takedown, mid-event open or close, etc.
+	},
+	"deal": {
+		"pre-paid": false,		//was this a pre-paid event, or will rent be collected
+		"flat_rent_usd": 0,		//flat rent that was due
+		"%_of_sales": 0			//was there a % rate on top of or in addtion to a flat rate?
+	},
+	"location": {				//location details for customers to find the event
+		"street1": "",
+		"street2": "",
+		"street3": "",
+		"city": "",
+		"state": "",
+		"zip": "",
+		"details": ""
+	}			
+}
