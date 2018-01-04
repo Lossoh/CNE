@@ -23,9 +23,15 @@ var ngAnnotate = require('gulp-ng-annotate');		//helps with angular scrips
 gulp.task('dist', [
 	'copy-html',
 	'styles',
-	'scripts'
+	'scripts',
+	'copy-images'
 ]);
 
+/*
+*	DEFAULT
+*
+*	This is ...
+*/
 gulp.task('default', [], function() {
 	gulp.watch('public/styles/**/*.css', ['styles'])
 		.on('change', browserSync.reload);
@@ -84,4 +90,14 @@ gulp.task('scripts', function() {
 	.pipe(sourcemaps.write())
 	.pipe(gulp.dest('dist/scripts'));
 });
+
+/*
+*	COPY-IMAGES
+*
+*/
+gulp.task('copy-images', function() {
+	gulp.src('public/images/*')
+		.pipe(gulp.dest('dist/images'));
+});
+
 

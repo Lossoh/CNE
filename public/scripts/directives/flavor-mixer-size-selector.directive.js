@@ -7,18 +7,18 @@
 
 angular
 	.module('cne')
-	.directive('flavorMixer', flavorMixer);
+	.directive('flavorMixerSizeSelector', flavorMixerSizeSelector);
 
 /* @ngInject */
-function flavorMixer() {
+function flavorMixerSizeSelector() {
 	//define the directive
 	var directive = {
 		restrict: "AECM",
-		templateUrl: 'views/directives/flavor-mixer.directive.htm',
+		templateUrl: 'views/directives/flavor-mixer-size-selector.directive.htm',
 		replace: true,
 		scope: {},
 		link: linkFunc,
-		controller: flavorMixerController,
+		controller: flavorMixerSizeSelectorController,
 		controllerAs: 'vm',
 		bindToController: true
 	}
@@ -26,9 +26,9 @@ function flavorMixer() {
 	/* @ngInject */
 	function linkFunc(scope, el, attr, ctrl) {}
 
-	flavorMixerController.$inject = ['$scope', '$log'];
+	flavorMixerSizeSelectorController.$inject = ['$scope', '$log'];
 	/* @ngInject */
-	function flavorMixerController($scope, $log) {
+	function flavorMixerSizeSelectorController($scope, $log) {
 		//define local variables
 		var self = this;
 	}
