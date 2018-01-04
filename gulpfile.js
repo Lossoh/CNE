@@ -31,7 +31,7 @@ gulp.task('default', [], function() {
 		.on('change', browserSync.reload);
 	gulp.watch('public/scripts/**/*.js', ['scripts'])
 		.on('change', browserSync.reload);
-	gulp.watch('public/views/**/*.js', ['copy-html'])
+	gulp.watch('public/views/**/*.htm', ['copy-html'])
 		.on('change', browserSync.reload);
 	gulp.watch('public/index.html', ['copy-html'])
 		.on('change', browserSync.reload);
@@ -50,7 +50,7 @@ gulp.task('copy-html', function() {
 	//copy the index file
 	gulp.src('public/index.html')
 		.pipe(gulp.dest('dist'));
-	gulp.src('views/**/*.htm')
+	gulp.src('public/views/**/*.htm')
 		.pipe(gulp.dest('dist/views'));
 });
 
