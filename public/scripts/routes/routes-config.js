@@ -19,6 +19,26 @@ function config($routeProvider) {
         controller: 'loginController',           //'mainController'
         controllerAs: 'vm'
     })
+    .when('/forgotPassword', {
+        templateUrl: 'views/login-forgotPasswordPage.htm',      //'views/mainPage.htm'
+        controller: 'forgotPasswordController',           //'mainController'
+        controllerAs: 'vm'
+    })
+    .when('/createLogin', {
+        templateUrl: 'views/login-createLoginPage.htm',      //'views/mainPage.htm'
+        controller: 'createLoginController',           //'mainController'
+        controllerAs: 'vm'
+    })
+    .when('/find', {
+        templateUrl: 'views/locationsPage.htm',      //'views/mainPage.htm'
+        controller: 'locationsController',           //'mainController'
+        controllerAs: 'vm'
+    })
+    .when('/shop', {
+        templateUrl: 'views/shoppingPage.htm',      //'views/mainPage.htm'
+        controller: 'shoppingController',           //'mainController'
+        controllerAs: 'vm'
+    })
 	.otherwise({
         redirectTo: '/'
     });
