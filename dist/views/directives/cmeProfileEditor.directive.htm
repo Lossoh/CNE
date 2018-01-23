@@ -13,36 +13,54 @@
 	<!--Frequency-->
 	<div class="row">
 		Frequency:
-		<input list='frequencyPicker' placeholder='{{vm.record.frequency[0].lable}}'>
+		<input 	list='frequencyPicker' 
+				placeholder='{{vm.record.frequency[0].lable}}' 
+				ng-model='vm.activeRecord.frequency'
+				ng-blur='vm.validate("frequency", vm.activeRecord.frequency)'>
 		<datalist name="frequencyPicker" id="frequencyPicker">
 			<option ng-repeat="frequency in vm.record.frequency" value="{{frequency.lable}}">{{frequency.lable}}</option>
 		</datalist>	
 	</div>
 	
 	<!--Season-->
-
+	
 	<!--Calendar Year-->
 	<div class="row">
 		Calendar Year:
-		<input list='yearPicker' placeholder="{{vm.record.years[0]}}" ng-model='vm.activeDate.year'>
+		<input 	list='yearPicker' 
+				placeholder="{{vm.record.years[0]}}" 
+				ng-model='vm.activeRecord.year'
+				ng-blur='vm.validate("year", vm.activeRecord.year)'>
+		
 		<datalist name="yearPicker" id="yearPicker" >
 			<option ng-repeat="year in vm.record.years" value="{{year}}">{{year}}</option>
 		</datalist>	
+
 	</div>
 
 	<!--Start for year-->
 	<div class="row">
-		Start <date-bookend-picker fulldate='vm.activeDate'></date-bookend-picker>	
+		Start 	<date-bookend-picker 	year='vm.activeRecord.year' 
+										bookend='vm.activeRecord.startDate'
+										bkndtype="'startDate'"
+										validatefn='vm.validate(type, value)'>
+				</date-bookend-picker>	
 	</div>
 
 	<!--End for year-->
 	<div class="row">
-		End <date-bookend-picker fulldate='vm.activeDate'></date-bookend-picker>	
+		End 	<date-bookend-picker 	year='vm.activeRecord.year' 
+										bookend='vm.activeRecord.endDate'
+										bkndtype="'endDate'"
+										validatefn='vm.validate(type, value)'>
+				</date-bookend-picker>	
 	</div>
 	
 	<!--Iterations Calendar-->
 	<div class="row">
 		<cme-iterations-table instances='vm.record.instances'></cme-iterations-table>
 	</div>
+
+	{{vm.validation}}
 
 </div>

@@ -17,7 +17,10 @@ function dateBookendPicker() {
 		templateUrl: 'views/directives/dateBookendPicker.directive.htm',
 		replace: true,
 		scope: {
-			fulldate: "="
+			year: "=",
+			bookend: "=",
+			bkndtype: "=",
+			validatefn: "&"
 		},
 		link: linkFunc,
 		controller: dateBookendPickerController,
@@ -55,17 +58,29 @@ function dateBookendPicker() {
 		}
 
 		//define private functions
+		/*
+		*	Weekday Calculation
+		*/
 		function weekdayCalculation() {
 			//define local variables
 			var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",  "Saturday"];
-			var currentDate = new Date(self.fulldate.year, self.activedate.month - 1, self.activedate.day);
+			var currentDate = new Date(self.year, self.activedate.month - 1, self.activedate.day);
 			var wkdayNum = currentDate.getDay();
 			self.activedate.wkday = daysOfWeek[wkdayNum];
-			//console.log('have the current date', currentDate);
+		};
 
+		/*
+		*	Save Bookend
+		*/
+		function saveBookend() {
+			//define local variables
+			var currentDate = new Date(self.year, self.activedate.month - 1, self.activedate.day);
+			console.log('saving the bookend', self.bkndtype);
 
+			self.bookend = currentDate;
 
-		}
+			self.validatefn({type: self.bkndtype, value:self.bookend});
+		};
 
 		//define view model functions
 		self.validate = function(type, value) {
@@ -104,11 +119,13 @@ function dateBookendPicker() {
 			//must be within the required range
 			//ADD THIS LATER
 
-			if(self.fulldate.year != "" && self.activedate.month != "" && self.activedate.day  != "") {
+			if(self.year != "" && self.activedate.month != "" && self.activedate.day  != "") {
 				weekdayCalculation();
+				saveBookend();
 			} else {
 				console.log('still missing data');
 			}
+
 			
 		};
 
