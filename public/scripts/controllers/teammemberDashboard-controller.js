@@ -10,8 +10,17 @@ function teammemberDashboardController($scope, $log) {
 	//define view model variable
 	var vm = this;
 	vm.sampleRecords = [
-		{testing:"test", instances: [1,2,3]},
-		{testing2:"test2"}
+		{
+			title:"",
+			address: {},
+			frequency: [
+				{lable: "Monthly"},
+				{lable: "Weekly"},
+				{lable: "Every Other Week"}
+			],
+			years: [2017,2018],
+			instances: [1,2,3]
+		}
 	];
 
 	$log.info('in the teammemberDashboard controller');	//TODO: TAKE THIS OUT LATER

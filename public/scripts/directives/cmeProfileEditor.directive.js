@@ -33,7 +33,11 @@ function cmeProfileEditor() {
 	function cmeProfileEditorController($scope, $log) {
 		//define local variables
 		var self = this;
-		console.log('got this record', self.record);
+		self.activeDate = {
+			year: "",
+			month: "",
+			day:""
+		}
 	}
 
 	//pass it back

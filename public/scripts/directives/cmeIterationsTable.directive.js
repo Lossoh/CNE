@@ -33,7 +33,7 @@ function cmeIterationsTable() {
 	function cmeIterationsTableController($scope, $log) {
 		//define local variables
 		var self = this;
-		console.log('got these instances', self.instances);
+		self.autofill = true;
 	}
 
 	//pass it back

@@ -1,0 +1,21 @@
+<div>
+	
+	{{vm.activedate}}
+	<!--Month-->
+	Month:
+	<input list='monthPicker' ng-model="vm.activedate.month" ng-blur='vm.validate("month", vm.activedate.month)'>
+	<datalist name="monthPicker" id="monthPicker" >
+		<option ng-repeat="month in vm.monthdays" value="{{month.value}}">{{month.text}}</option>
+	</datalist>	
+
+	<!--Day-->
+	Day:
+	<input list='dayPicker' ng-model='vm.activedate.day' ng-blur='vm.validate("day", vm.activedate.day)'>
+	<datalist name="dayPicker" id="dayPicker" >
+		<option ng-repeat="day in vm.monthdays[vm.activedate.month].days" value="{{day}}">{{day}}</option>
+	</datalist>	
+
+	<!--Weekday-->
+	Weekday: <span>{{vm.activedate.wkday}}</span>
+
+</div>

@@ -13,27 +13,33 @@
 	<!--Frequency-->
 	<div class="row">
 		Frequency:
-		<input list='frequencyPicker'>
+		<input list='frequencyPicker' placeholder='{{vm.record.frequency[0].lable}}'>
 		<datalist name="frequencyPicker" id="frequencyPicker">
-			<option value="Yearly">Yearly</option>
-			<option value="Quaterly">Quarterly</option>
-			<option value="Monthly">Monthly</option>
-			<option value="Weekly">Weekly</option>
-			<option value="Every Other Week">Every Other Week</option>
+			<option ng-repeat="frequency in vm.record.frequency" value="{{frequency.lable}}">{{frequency.lable}}</option>
 		</datalist>	
 	</div>
 	
 	<!--Season-->
 
-	<!--Start and End-->
+	<!--Calendar Year-->
 	<div class="row">
-		Start Date:
-		<input type="text">
-		End Date:
-		<input type="text">
+		Calendar Year:
+		<input list='yearPicker' placeholder="{{vm.record.years[0]}}" ng-model='vm.activeDate.year'>
+		<datalist name="yearPicker" id="yearPicker" >
+			<option ng-repeat="year in vm.record.years" value="{{year}}">{{year}}</option>
+		</datalist>	
+	</div>
+
+	<!--Start for year-->
+	<div class="row">
+		Start <date-bookend-picker fulldate='vm.activeDate'></date-bookend-picker>	
+	</div>
+
+	<!--End for year-->
+	<div class="row">
+		End <date-bookend-picker fulldate='vm.activeDate'></date-bookend-picker>	
 	</div>
 	
-
 	<!--Iterations Calendar-->
 	<div class="row">
 		<cme-iterations-table instances='vm.record.instances'></cme-iterations-table>
