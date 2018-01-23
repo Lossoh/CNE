@@ -14,6 +14,11 @@ function config($routeProvider) {
         controller: 'landingController',           //'mainController'
         controllerAs: 'vm'
     })
+    .when('/login', {
+        templateUrl: 'views/loginPage.htm',      //'views/mainPage.htm'
+        controller: 'loginController',           //'mainController'
+        controllerAs: 'vm'
+    })
 	.otherwise({
         redirectTo: '/'
     });
