@@ -1,0 +1,42 @@
+<div>
+	
+	<!--Name/Title-->
+	<div class="row">
+		Customer/Market/Event Title:
+		<input type="text">
+	</div>
+	
+	
+	<!--Address-->
+	<div class="row"></div>
+	
+	<!--Frequency-->
+	<div class="row">
+		Frequency:
+		<input list='frequencyPicker'>
+		<datalist name="frequencyPicker" id="frequencyPicker">
+			<option value="Yearly">Yearly</option>
+			<option value="Quaterly">Quarterly</option>
+			<option value="Monthly">Monthly</option>
+			<option value="Weekly">Weekly</option>
+			<option value="Every Other Week">Every Other Week</option>
+		</datalist>	
+	</div>
+	
+	<!--Season-->
+
+	<!--Start and End-->
+	<div class="row">
+		Start Date:
+		<input type="text">
+		End Date:
+		<input type="text">
+	</div>
+	
+
+	<!--Iterations Calendar-->
+	<div class="row">
+		<cme-iterations-table instances='vm.record.instances'></cme-iterations-table>
+	</div>
+
+</div>

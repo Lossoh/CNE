@@ -9,7 +9,8 @@ angular
 /* @ngInject */
 function config($routeProvider) {
 	$routeProvider
-	.when('/', {
+	//PUBLIC ROUTES
+    .when('/', {
         templateUrl: 'views/landingPage.htm',      //'views/mainPage.htm'
         controller: 'landingController',           //'mainController'
         controllerAs: 'vm'
@@ -39,7 +40,34 @@ function config($routeProvider) {
         controller: 'shoppingController',           //'mainController'
         controllerAs: 'vm'
     })
+
+    //PRIVATE ROUTES
+    .when('/teamMember/:employeeId', {
+        templateUrl: 'views/teammemberDashboard.htm',      //'views/mainPage.htm'
+        controller: 'teammemberDashboardController',           //'mainController'
+        controllerAs: 'vm',
+        resolve: { /* @ngInject */
+            authentication: authentication
+        }
+    })
+    .when('/myAccount/:userId', {
+        templateUrl: 'views/customerDashboard.htm',      //'views/mainPage.htm'
+        controller: 'customerDashboardController',           //'mainController'
+        controllerAs: 'vm',
+        resolve: { /* @ngInject */
+            authentication: authentication
+        }
+    })
 	.otherwise({
         redirectTo: '/'
     });
 }
+
+/*
+*   REQUIRED FUNCTIONS
+*
+*/
+function authentication() {
+
+    console.log('authenticating');  //TODO: TAKE THIS OUT LATER
+};
