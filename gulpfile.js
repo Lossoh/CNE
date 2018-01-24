@@ -81,6 +81,7 @@ gulp.task('styles', function() {
 */
 gulp.task('scripts', function() {
 	gulp.src([
+		'server/clientbundlescripts/*.js',
 		'public/**/*.js'
 	])
 	.pipe(sourcemaps.init())

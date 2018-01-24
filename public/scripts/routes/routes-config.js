@@ -7,8 +7,9 @@ angular
     .module('cne')
     .config(config);
 /* @ngInject */
-function config($routeProvider) {
-	$routeProvider
+function config($routeProvider,$locationProvider) {
+	$locationProvider.hashPrefix('');
+    $routeProvider
 	//PUBLIC ROUTES
     .when('/', {
         templateUrl: 'views/landingPage.htm',      //'views/mainPage.htm'

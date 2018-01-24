@@ -1,2 +1,2 @@
 // MODULE
-var ahNuts = angular.module('cne', ['ngRoute']);
+var ahNuts = angular.module('cne', ['ngRoute', 'firebase', 'ngSanitize']);

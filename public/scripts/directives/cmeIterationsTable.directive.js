@@ -17,7 +17,8 @@ function cmeIterationsTable() {
 		templateUrl: 'views/directives/cmeIterationsTable.directive.htm',
 		replace: true,
 		scope: {
-			instances: "="
+			instances: "=",
+			buildoccurencesfn: "&"
 		},
 		link: linkFunc,
 		controller: cmeIterationsTableController,
@@ -34,6 +35,13 @@ function cmeIterationsTable() {
 		//define local variables
 		var self = this;
 		self.autofill = true;
+
+		//view model functions
+		self.buildoccurencesbutton = function() {
+			console.log('buildoccurencesbutton clicked');
+			self.buildoccurencesfn();
+		};
+
 	}
 
 	//pass it back

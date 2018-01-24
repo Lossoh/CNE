@@ -58,9 +58,9 @@
 	
 	<!--Iterations Calendar-->
 	<div class="row">
-		<cme-iterations-table instances='vm.record.instances'></cme-iterations-table>
+		<cme-iterations-table 	instances='vm.activeRecord.occurences'
+								buildoccurencesfn='vm.buildOccurances()'>
+		</cme-iterations-table>
 	</div>
-
-	{{vm.validation}}
 
 </div>

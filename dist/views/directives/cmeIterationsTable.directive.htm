@@ -2,7 +2,8 @@
 	<!--Header-->
 	<h4>Total Occurances In 2018:</h4>
 	
-	<input type="checkbox" name='autofill' value='autofill' ng-model='vm.autofill'>Autofill All Instances
+	<!--<input type="checkbox" name='autofill' value='autofill' ng-model='vm.autofill'>Autofill All Instances-->
+	<button ng-click='vm.buildoccurencesbutton()'>Schedule Occurances</button>
 
 	<!--Iterations Table-->
 	<div class="table-condensed">
@@ -25,7 +26,7 @@
 			<tr ng-repeat='instance in vm.instances'>
 				<!--Date-->
 				<td>
-					<input type="text">
+					<input type="text" ng-model="instance.date">
 				</td>
 
 				<!--Day Start-->

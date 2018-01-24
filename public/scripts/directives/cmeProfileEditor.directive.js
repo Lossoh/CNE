@@ -57,20 +57,67 @@ function cmeProfileEditor() {
 			//define local variables
 			//console.log('checking completness', self.validation);
 			
-			if(	self.validation.frequency 	&& 
-				self.validation.year 		&& 
-				self.validation.startDate	&&
-				self.validation.endDate) {
+			if(	self.validation.frequency.validated && 
+				self.validation.year.validated 		&& 
+				self.validation.startDate.validated	&&
+				self.validation.endDate.validated) {
 				//
 				console.log('everything filled in');
 
 				//if everything is filled in, generate an itrations list
-				buildOccurancesList(self.validation.startDate, self.validation.endDate, self.validation.frequency);
+				//self.activeRecord.occurences = buildOccurancesList(self.activeRecord);
 
 			} else {
 				console.log('still missing data');
 			};
 
+		};
+
+		/*
+		*	Build Occurances List
+		*
+		*	@return []
+		*/
+		function buildOccurancesList(start, end, freq) {
+			//define local variables
+			console.log('buidling Occurances');
+			console.log('start', start);
+			console.log('end', end);
+			console.log('freq', freq);
+			var returnArray = [];
+			var startDate = new Date(start);
+			var endDate = new Date(end);
+			var frequencies = {"Monthly": 1, "Weekly": 2, "Every Other Week": 3 };
+
+			switch(frequencies[freq]) {
+				case 1:
+					console.log('Monthly');
+					break;
+				case 2:
+					
+					var dateCounter = new Date(start);
+
+					console.log('Weekly', dateCounter < endDate, dateCounter, endDate);
+					//first occurence is always the start
+					returnArray.push({date: start});
+
+					//if an event happens weekly, add seven days until the end date has been reached
+					while(dateCounter < endDate) {
+						console.log(dateCounter);
+						dateCounter.setDate(dateCounter.getDate() + 7);
+
+						returnArray.push({date: new Date(dateCounter)});
+					};
+					return returnArray;
+
+					break;
+				case 3:
+					console.log('Every Other Week');
+					break;
+				default:
+					console.log('other');
+					break;
+			}
 		};
 
 		//define viewmodel functions 
@@ -87,6 +134,10 @@ function cmeProfileEditor() {
 			checkCompletness();
 		};
 
+		self.buildOccurances = function() {
+			console.log('buildOccurances launched ');
+			self.activeRecord.occurences = buildOccurancesList(self.activeRecord.startDate, self.activeRecord.endDate, self.activeRecord.frequency);
+		};
 	}
 
 	//pass it back
