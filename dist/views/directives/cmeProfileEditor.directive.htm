@@ -185,8 +185,10 @@
 	
 		<!--Engagements-->
 		<div class="col-sm-12 col-md-12 col-lg-12">
-			This is the cmeEngagmentsManager
+			<cme-engagments-manager engagments='vm.cmeCollection[vm.focus].engagements' add-single='vm.addEngagment(key)'></cme-engagments-manager>
 		</div>	
+
+		{{vm.cmeCollection[vm.focus]}}
 
 	</div>
 

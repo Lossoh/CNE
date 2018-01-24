@@ -1,0 +1,38 @@
+<div>
+	<div class="container">
+		
+		<!--Control Bar-->
+		<div class="row">
+			
+			<!--Add Single-->
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				
+				<button class="btn btn-success"
+						ng-click='vm.singleAdd()'>Add
+				</button>
+
+			</div>
+
+			<!--Add Batch-->
+			<div class="col-sm-12 col-md-12 col-lg-12">
+
+				<button class="btn btn-success"
+						ng-click='vm.batchAdd()'>Batch
+				</button>
+
+				<button class="btn btn-warning"
+						ng-click='vm.testing()'>Testing
+				</button>
+				
+			</div>
+
+
+		</div>
+
+		<!--list-->
+		<div ng-repeat="evnt in engagments track by $index" class="row">
+			{{evnt}}
+		</div>
+
+	</div>
+</div>

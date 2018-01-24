@@ -8,11 +8,36 @@ schemaFactory.$inject = [];
 function schemaFactory() {
 
 	var allSchema = {
+		newEngagment: newEngagment,
 		newWebSocial: newWebSocial,
 		newContact: newContact,
 		newAddress: newAddress,
 		newCME: newCME
 	};
+
+	function newEngagment() {
+		//define local variables
+		var self = this;
+
+		return {
+			schedule: {
+				arrival: "",
+				salesStart: "",
+				salesEnd: "",
+				departure: ""
+			},
+			location: self.newAddress(),
+			shifts: [],
+			status: {
+				value: "",	//confirmed, unconfirmed, paid, etc
+				otherDescription: ""
+			},
+			type: {
+				selection: "",
+				otherDescription: ""
+			}
+		};
+	}
 
 	function newWebSocial() {
 		//define local variables
@@ -90,7 +115,7 @@ function schemaFactory() {
 				annuals: [],
 				monthly: []
 			},
-			occurances: {}
+			engagments: ""
 		}
 	}
  

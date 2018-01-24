@@ -9,10 +9,12 @@ function firebaseService($firebase, $firebaseObject, $firebaseArray) {
 
 	var FB = {
 		_lists: {
-			cmeList: $firebaseArray(firebase.database().ref().child('cme'))
+			cmeList: $firebaseArray(firebase.database().ref().child('cme')),
+			engagmentsList: $firebaseArray(firebase.database().ref().child('engagements'))
 		},
 		_objects: {
 			cmeObject: $firebaseObject(firebase.database().ref().child('cme')),
+			engagmentsCollection: $firebaseObject(firebase.database().ref().child('engagements'))
 		},
 		create: create,
 		read: read,
@@ -33,12 +35,12 @@ function firebaseService($firebase, $firebaseObject, $firebaseArray) {
 			//execute based on type
 			if(type == 'object') {
 				
-				//save the object
-				self._objects[name].$save().then(function success(s) {
+				//save the object THIS DOESN'T WORK
+				/*self._objects[name].$save().then(function success(s) {
 					resolve(s);
 				}, function error(e) {
-					reject('error: ' + e);
-				});
+					reject(e);
+				});*/
 				
 			} else if(type == 'array') {
 				
@@ -46,7 +48,7 @@ function firebaseService($firebase, $firebaseObject, $firebaseArray) {
 				self._lists[name].$add(newData).then(function success(s) {
 					resolve(s);
 				}, function error(e) {
-					reject('error: ' + e);
+					reject(e);
 				});
 				
 			}

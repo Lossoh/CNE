@@ -30,10 +30,10 @@ function cmeProfileEditor() {
 
 	}
 
-	cmeProfileEditorController.$inject = ['$scope', '$log', 'firebaseService'];
+	cmeProfileEditorController.$inject = ['$scope', '$log', 'firebaseService', 'schemaFactory'];
 	
 	/* @ngInject */
-	function cmeProfileEditorController($scope, $log, firebaseService) {
+	function cmeProfileEditorController($scope, $log, firebaseService, schemaFactory) {
 		//define local variables
 		var self = this;
 
@@ -56,6 +56,16 @@ function cmeProfileEditor() {
 			}).catch(function error(e) {
 				//console.log(e);
 			});
+		};
+
+		self.addEngagment = function(key) {
+			
+			self.cmeCollection.$ref().child(self.focus).child('engagements').child(key).set(schemaFactory.newEngagment()).then(function success(s) {
+				console.log('success', s);
+			}).catch(function error(e) {
+				console.log(e);
+			});;
+			
 		};
 	}
 
