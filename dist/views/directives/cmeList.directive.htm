@@ -4,9 +4,9 @@
 		<li ng-repeat="item in vm.cmelist track by $index">
 			
 			<input 	type="text" 
-					ng-model='vm.cmelist[$index].title'
+					ng-model='vm.cmelist[$index].general.title'
 					ng-focus='vm.focusTrack(vm.cmelist[$index].$id)'
-					ng-blur='vm.update(vm.cmelist[$index].$id, vm.cmelist[$index].title)'>
+					ng-blur='vm.update(vm.cmelist[$index].$id, vm.cmelist[$index].general.title)'>
 		</li>
 	</ul>
 </div>

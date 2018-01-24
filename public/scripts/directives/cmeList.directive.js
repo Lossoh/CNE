@@ -60,7 +60,8 @@ function cmeList() {
 		*/
 		self.update = function(index, val) {
 			//console.log(self.cmelist, index, val);
-			self.cmelist.$ref('cme').child(index).child('title').set(val);
+			self.cmelist.$ref('cme').child(index).child('general').child('title').set(val);
+			//firebaseService.update('array',)
 		};
 	}
 

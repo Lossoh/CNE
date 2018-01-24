@@ -11,16 +11,39 @@
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			Customer/Market/Event Title: 
 			<input 	type="text" 
-					ng-model='vm.cmeCollection[vm.focus].title'
+					ng-model='vm.cmeCollection[vm.focus].general.title'
 					ng-blur='vm.update()'>
 		</div>
 
 		<!--Type-->
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			Type:
-			<input 	type="text" 
-					ng-model='vm.cmeCollection[vm.focus].type'
-					ng-blur='vm.update()'>
+			<input 	type="radio" 
+					id="engagmentChoice1" 
+					name="engagmentChoice" 
+					value="farmersMarket"
+					ng-model='vm.cmeCollection[vm.focus].general.type.selection'
+    				ng-change='vm.update()'>
+    		<label 	for="engagmentChoice1">Farmers Market</label>
+			
+			<input 	type="radio" 
+					id="engagmentChoice2" 
+					name="engagmentChoice" 
+					value="event"
+					ng-model='vm.cmeCollection[vm.focus].general.type.selection'
+    				ng-change='vm.update()'>
+    		<label 	for="engagmentChoice2">Event</label>
+
+    		<input 	type="radio" 
+    				id="engagmentChoice3" 
+    				name="engagmentChoice" 
+    				value="other"
+    				ng-model='vm.cmeCollection[vm.focus].general.type.selection'
+    				ng-change='vm.update()'>
+    		<label 	for="engagmentChoice3">Other</label>
+    		<input 	type="text" 
+    				ng-model='vm.cmeCollection[vm.focus].general.type.otherDescription'
+    				ng-blur='vm.update()'>
 		</div>
 
 	</div>
@@ -33,14 +56,86 @@
 			<h4>Addresses</h4>
 		</div>	
 		
-		<!--Location-->
-		<div class="col-sm-12 col-md-12 col-lg-12">
-			<strong>Location</strong>
-		</div>
-	
-		<!--Office-->
-		<div class="col-sm-12 col-md-12 col-lg-12">
-			<strong>Office</strong>
+		<!--Locations-->
+		<div ng-repeat="address in vm.cmeCollection[vm.focus].address track by $index" class="col-sm-12 col-md-12 col-lg-12">
+			
+			<!--Type-->
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<input 	type="radio" 
+						id="engagmentChoice1" 
+						name="addressChoice" 
+						value="farmersMarket"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].type.selection'
+	    				ng-change='vm.update()'>
+	    		<label 	for="engagmentChoice1">Physical</label>
+				
+				<input 	type="radio" 
+						id="engagmentChoice2" 
+						name="addressChoice" 
+						value="event"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].type.selection'
+	    				ng-change='vm.update()'>
+	    		<label 	for="engagmentChoice2">Office</label>
+
+	    		<input 	type="radio" 
+	    				id="engagmentChoice3" 
+	    				name="addressChoice" 
+	    				value="other"
+	    				ng-model='vm.cmeCollection[vm.focus].address[$index].type.selection'
+	    				ng-change='vm.update()'>
+	    		<label 	for="engagmentChoice3">Other</label>
+	    		<input 	type="text" 
+	    				ng-model='vm.cmeCollection[vm.focus].address[$index].type.otherDescription'
+	    				ng-blur='vm.update()'>
+				
+
+			</div>
+
+			<!--Physical Address-->
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<label 	for="engagmentStreet01">Street:</label>
+				<input 	type="text"
+						name="engagmentStreet01"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].physical.street01'
+						ng-blur='vm.update()'> <br>
+
+				<label 	for="engagmentStreet02"></label>
+				<input 	type="text"
+						name="engagmentStreet02"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].physical.street02'
+						ng-blur='vm.update()'> <br>
+
+				<label 	for="engagmentStreet03"></label>
+				<input 	type="text"
+						name="engagmentStreet03"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].physical.street03'
+						ng-blur='vm.update()'> <br>
+
+				<label 	for="engagmentLocDesc">Location Description:</label>
+				<input 	type="text"
+						name="engagmentLocDesc"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].physical.description'
+						ng-blur='vm.update()'> <br>
+
+				<label 	for="engagmentCity">City:</label>
+				<input 	type="text"
+						name="engagmentCity"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].physical.city'
+						ng-blur='vm.update()'> <br>
+
+				<label 	for="engagmentState">State:</label>
+				<input 	type="text"
+						name="engagmentState"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].physical.state'
+						ng-blur='vm.update()'> <br>
+
+				<label 	for="engagmentZip">Zip:</label>
+				<input 	type="text"
+						name="engagmentZip"
+						ng-model='vm.cmeCollection[vm.focus].address[$index].physical.zip'
+						ng-blur='vm.update()'>
+			</div>
+
 		</div>
 
 	</div>

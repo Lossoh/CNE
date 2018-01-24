@@ -8,39 +8,88 @@ schemaFactory.$inject = [];
 function schemaFactory() {
 
 	var allSchema = {
+		newWebSocial: newWebSocial,
+		newContact: newContact,
+		newAddress: newAddress,
 		newCME: newCME
 	};
 
-	function newCME() {
+	function newWebSocial() {
+		//define local variables
+		var self = this;
+
 		return {
-			title: "",
-			type: "",	//Farmers Market, Event, etc
-			address: {
+			type: {		//email, phone, web, instagram, facebook, twitter, snap, pinterest, other
+				selection: "",
+				otherDescription: ""
+			},
+			address: ""
+		};
+
+	};
+
+	function newContact() {
+		//define local variables
+		var self = this;
+
+		return {
+			name: {
+				first: "",
+				last: "",
+			},
+			phone: "",
+			email: "",
+			type: {
+				selection: "",
+				otherDescription: ""
+			}
+		};
+
+	};
+
+	function newAddress() {
+		//define local variables
+		var self = this;
+
+		return {
+			type: {
+				selection: "",
+				otherDescription: ""
+			},
+			physical: {
 				street01: "",
 				street02: "",
 				street03: "",
-				Description: "",
+				description: "",
 				city: "",
 				state: "",
 				zip: ""
+			}
+		};
+	};
+
+	function newCME() {
+		//define local variables
+		var self = this;
+
+		return {
+			general: {
+				title: "",
+				type: {
+					selection: "",
+					otherDescription: ""
+				}
 			},
+			address: [ self.newAddress() ],
 			contacts: {
-				manager: {
-					name: "",
-					phone: "",
-					email: ""
-				},
-				others: [],
-				email: "",
-				phone: "",
-				web: "",
-				instagram: "",
-				facebook: "",
-				twitter: "",
-				snap: "",
-				pinterest: ""
+				people: [ self.newContact() ],
+				social: [ self.newWebSocial() ]
 			},
-			financials: {},
+			financials: {
+				gross: "",
+				annuals: [],
+				monthly: []
+			},
 			occurances: {}
 		}
 	}
