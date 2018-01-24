@@ -1,0 +1,27 @@
+<div>
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				
+				<h3>List of CMEs</h3>
+				
+				<button class="btn btn-success" ng-click='vm.createCME()'>Add CME</button>
+
+				<cme-list focus='vm.focusrecord'></cme-list>
+
+
+
+			</div>
+			
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				
+				<h3>CME Profile</h3>
+				
+				<cme-profile-editor focus='vm.focusrecord'></cme-profile-editor>
+
+			</div>
+
+		</div>
+	</div>
+</div>

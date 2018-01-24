@@ -51,6 +51,14 @@ function config($routeProvider,$locationProvider) {
             authentication: authentication
         }
     })
+    .when('/teamMember/cmemanager/:employeeId', {
+        templateUrl: 'views/cmemanager.htm',      //'views/mainPage.htm'
+        controller: 'cmeManagerController',           //'mainController'
+        controllerAs: 'vm',
+        resolve: { /* @ngInject */
+            authentication: authentication
+        }
+    })
     .when('/myAccount/:userId', {
         templateUrl: 'views/customerDashboard.htm',      //'views/mainPage.htm'
         controller: 'customerDashboardController',           //'mainController'

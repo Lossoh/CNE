@@ -1,66 +1,98 @@
 <div>
 	
-	<!--Name/Title-->
+	<!--General Information-->
 	<div class="row">
-		Customer/Market/Event Title:
-		<input type="text">
+	
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<h4>General Information</h4>
+		</div>	
+
+		<!--Name/Title-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			Customer/Market/Event Title: 
+			<input 	type="text" 
+					ng-model='vm.cmeCollection[vm.focus].title'
+					ng-blur='vm.update()'>
+		</div>
+
+		<!--Type-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			Type:
+			<input 	type="text" 
+					ng-model='vm.cmeCollection[vm.focus].type'
+					ng-blur='vm.update()'>
+		</div>
+
 	</div>
-	
-	
-	<!--Address-->
-	<div class="row"></div>
-	
-	<!--Frequency-->
+
+	<!--Addresses-->
 	<div class="row">
-		Frequency:
-		<input 	list='frequencyPicker' 
-				placeholder='{{vm.record.frequency[0].lable}}' 
-				ng-model='vm.activeRecord.frequency'
-				ng-blur='vm.validate("frequency", vm.activeRecord.frequency)'>
-		<datalist name="frequencyPicker" id="frequencyPicker">
-			<option ng-repeat="frequency in vm.record.frequency" value="{{frequency.lable}}">{{frequency.lable}}</option>
-		</datalist>	
-	</div>
-	
-	<!--Season-->
-	
-	<!--Calendar Year-->
-	<div class="row">
-		Calendar Year:
-		<input 	list='yearPicker' 
-				placeholder="{{vm.record.years[0]}}" 
-				ng-model='vm.activeRecord.year'
-				ng-blur='vm.validate("year", vm.activeRecord.year)'>
 		
-		<datalist name="yearPicker" id="yearPicker" >
-			<option ng-repeat="year in vm.record.years" value="{{year}}">{{year}}</option>
-		</datalist>	
+		<!--Title-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<h4>Addresses</h4>
+		</div>	
+		
+		<!--Location-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<strong>Location</strong>
+		</div>
+	
+		<!--Office-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<strong>Office</strong>
+		</div>
 
-	</div>
-
-	<!--Start for year-->
-	<div class="row">
-		Start 	<date-bookend-picker 	year='vm.activeRecord.year' 
-										bookend='vm.activeRecord.startDate'
-										bkndtype="'startDate'"
-										validatefn='vm.validate(type, value)'>
-				</date-bookend-picker>	
-	</div>
-
-	<!--End for year-->
-	<div class="row">
-		End 	<date-bookend-picker 	year='vm.activeRecord.year' 
-										bookend='vm.activeRecord.endDate'
-										bkndtype="'endDate'"
-										validatefn='vm.validate(type, value)'>
-				</date-bookend-picker>	
 	</div>
 	
-	<!--Iterations Calendar-->
+	<!--Contacts-->
 	<div class="row">
-		<cme-iterations-table 	instances='vm.activeRecord.occurences'
-								buildoccurencesfn='vm.buildOccurances()'>
-		</cme-iterations-table>
+		
+		<!--Title-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<h4>Contacts</h4>
+		</div>	
+			
+		<!--Mangers-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<strong>Managers</strong>
+		</div>
+	
+		<!--Office-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<strong>Office</strong>
+		</div>
+	
+		<!--Web & Social Media-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<strong>Web / Social Media</strong>
+		</div>
+
+	</div>
+
+	<!--Financials-->
+	<div class="row">
+		
+		<!--Title-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<h4>Financials</h4>
+		</div>	
+
+	</div>
+
+	<!--Engagements-->
+	<div class="row">
+		
+		<!--Title-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<h4>Engagements</h4>
+		</div>	
+	
+		<!--Engagements-->
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			This is the cmeEngagmentsManager
+		</div>	
+
 	</div>
 
 </div>

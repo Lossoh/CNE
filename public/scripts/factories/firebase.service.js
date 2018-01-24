@@ -1,0 +1,112 @@
+angular
+    .module('cne')
+    .factory('firebaseService', firebaseService);
+
+firebaseService.$inject = ['$firebase', '$firebaseObject', '$firebaseArray'];
+
+/* @ngInject */
+function firebaseService($firebase, $firebaseObject, $firebaseArray) {
+
+	var FB = {
+		_lists: {
+			cmeList: $firebaseArray(firebase.database().ref().child('cme'))
+		},
+		_objects: {
+			cmeObject: $firebaseObject(firebase.database().ref().child('cme')),
+		},
+		create: create,
+		read: read,
+		update: update,
+		del: del
+	};
+
+	/*
+	*	
+	*/
+	function create(type, name, newData) {
+		//define local variables
+		var self = this;
+
+		//return async work
+		return new Promise(function(resolve, reject) {
+			
+			//execute based on type
+			if(type == 'object') {
+				
+				//save the object
+				self._objects[name].$save().then(function success(s) {
+					resolve(s);
+				}, function error(e) {
+					reject('error: ' + e);
+				});
+				
+			} else if(type == 'array') {
+				
+				//save the list
+				self._lists[name].$add(newData).then(function success(s) {
+					resolve(s);
+				}, function error(e) {
+					reject('error: ' + e);
+				});
+				
+			}
+
+		});
+		
+	};
+
+	/*
+	*
+	*/
+	function read(type, name) {
+		//define local variables
+		var self = this;
+
+		//execute based on type
+		if(type == 'object') return self._objects[name];
+		else if(type == 'array') return self._lists[name];
+	};
+
+	/*
+	*
+	*/
+	function update(type, name, newData) {
+		//define local variables
+		var self = this;
+
+		//return async work
+		return new Promise(function(resolve, reject) {
+			
+			//execute based on type
+			if(type == 'object') {
+				
+				//save the object
+				self._objects[name].$save().then(function success(s) {
+					resolve(s);
+				}, function error(e) {
+					reject('error: ' + e);
+				});
+				
+			} else if(type == 'array') {
+				
+				//save the list
+				self._lists[name].$add(newData).then(function success(s) {
+					resolve(s);
+				}, function error(e) {
+					reject('error: ' + e);
+				});
+				
+			}
+
+		});
+
+	};
+
+	/*
+	*
+	*/
+	function del() {};
+
+  	//add 
+    return FB;	
+}
