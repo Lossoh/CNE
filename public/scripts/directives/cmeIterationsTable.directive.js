@@ -29,11 +29,12 @@ function cmeIterationsTable() {
 	/* @ngInject */
 	function linkFunc(scope, el, attr, ctrl) {}
 
-	cmeIterationsTableController.$inject = ['$scope', '$log'];
+	cmeIterationsTableController.$inject = ['$scope', '$log', 'firebaseService'];
 	/* @ngInject */
-	function cmeIterationsTableController($scope, $log) {
+	function cmeIterationsTableController($scope, $log, firebaseService) {
 		//define local variables
 		var self = this;
+		self.engagmentsCollection = firebaseService.read('object','engagmentsCollection');
 		self.autofill = true;
 
 		//view model functions
@@ -42,6 +43,7 @@ function cmeIterationsTable() {
 			self.buildoccurencesfn();
 		};
 
+		
 	}
 
 	//pass it back

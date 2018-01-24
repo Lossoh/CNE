@@ -1,10 +1,4 @@
 <div>
-	
-	<!--Header-->
-	<h4>Total Occurances In 2018:</h4>
-	
-	<!--<input type="checkbox" name='autofill' value='autofill' ng-model='vm.autofill'>Autofill All Instances-->
-	<button ng-click='vm.buildoccurencesbutton()'>Schedule Occurances</button>
 
 	<!--Iterations Table-->
 	<div class="table-condensed">
@@ -23,61 +17,63 @@
 				<th>Equipment Assigned</th>
 				<th>Personel Assigned</th>
 			</tr>
+			
 			<!--Data-->
-			<tr ng-repeat='instance in vm.instances'>
+			<tr ng-repeat='instance in vm.instances track by $index'>
 				<!--Date-->
 				<td>
-					<input type="text" ng-model="instance.date">
+					<span>{{vm.engagmentsCollection[instance].schedule.arrival | date:'shortDate'}}</span>
+					
 				</td>
 
 				<!--Day Start-->
-				<td>
-					<input type="text">
+				<td >
+					<span>{{vm.engagmentsCollection[instance].schedule.arrival | date:'shortTime'}}</span>
 				</td>
 
 				<!--Sales Hours Start-->
 				<td>
-					<input type="text">
+					<span>{{vm.engagmentsCollection[instance].schedule.salesStart | date:'shortTime'}}</span>
 				</td>
 
 				<!--Sales Hours End-->
 				<td>
-					<input type="text">
+					<span>{{vm.engagmentsCollection[instance].schedule.salesEnd | date:'shortTime'}}</span>
 				</td>
 
 				<!--Day End-->
 				<td>
-					<input type="text">
+					<span>{{vm.engagmentsCollection[instance].schedule.departure | date:'shortTime'}}</span>
 				</td>
 
 				<!--Projected Hourly Sales-->
 				<td>
-					<input type="text">
+					<span></span>
 				</td>
 
 				<!--Projected Daily Sales-->
 				<td>
-					<input type="text">
+					<span></span>
 				</td>
 
 				<!--Actual Houlry Sales-->
 				<td>
-					<input type="text">
+					<span></span>
 				</td>
 
 				<!--Actual Daily Sales-->
 				<td>
-					<input type="text">
+					<span></span>
 				</td>
 
 				<!--Equipment Assigned-->
 				<td>
-					<input type="text">
+					<span></span>
 				</td>
 
 				<!--Personel Assigned-->
 				<td>
-					<input type="text">
+					<span></span>
 				</td>
 
 			</tr>

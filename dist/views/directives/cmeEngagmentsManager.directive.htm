@@ -7,32 +7,74 @@
 			<!--Add Single-->
 			<div class="col-sm-12 col-md-12 col-lg-12">
 				
-				<button class="btn btn-success"
+				<!--<button class="btn btn-success"
 						ng-click='vm.singleAdd()'>Add
-				</button>
+				</button>-->
 
 			</div>
 
 			<!--Add Batch-->
 			<div class="col-sm-12 col-md-12 col-lg-12">
+				
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<label for="">Start Date:</label>
+					<input type="date">
+					<label for="">End Date:</label>
+					<input type="date">
+				</div>
 
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<label for="">Frequency:</label>
+					<input 	type="radio" 
+							id="frequencyChoice1" 
+							name="frequencyChoice" 
+							value="Daily">
+	    			<label 	for="engagmentChoice1">Daily</label>
+	    			<input 	type="radio" 
+							id="frequencyChoice2" 
+							name="frequencyChoice" 
+							value="Weekly">
+	    			<label 	for="engagmentChoice2">Weekly</label>
+	    			<input 	type="radio" 
+							id="frequencyChoice3" 
+							name="frequencyChoice" 
+							value="EveryOtherWeek">
+	    			<label 	for="engagmentChoice3">Every Other Week</label>
+				</div>
+
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					Expected Occurances: 4
+				</div>
+
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					Standard Hours
+					<!--Opening Hours Picker-->
+					<label for="openHrs">Open:</label>
+					<input list="openHrs" id='openHrs'>
+					<datalist name='openHrs'>
+						
+					</datalist>
+					
+					<!--Closing Hours Picker-->
+					<label for="closeHrs">Close:</label>
+					<input list="closeHrs" id='closeHrs'>
+					<datalist name='closeHrs'>
+						
+					</datalist>
+				</div>
+
+				<!--Batch Add-Button-->
 				<button class="btn btn-success"
-						ng-click='vm.batchAdd()'>Batch
-				</button>
-
-				<button class="btn btn-warning"
-						ng-click='vm.testing()'>Testing
+						ng-click='vm.batchAdd()'>Bulk Add
 				</button>
 				
 			</div>
 
 
 		</div>
-
+		
 		<!--list-->
-		<div ng-repeat="evnt in engagments track by $index" class="row">
-			{{evnt}}
-		</div>
+		<cme-iterations-table instances='vm.cmeEngagObj'></cme-iterations-table>
 
 	</div>
 </div>

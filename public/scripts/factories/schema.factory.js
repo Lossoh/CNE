@@ -12,6 +12,7 @@ function schemaFactory() {
 		newWebSocial: newWebSocial,
 		newContact: newContact,
 		newAddress: newAddress,
+		newSeason: newSeason,
 		newCME: newCME
 	};
 
@@ -89,6 +90,21 @@ function schemaFactory() {
 				city: "",
 				state: "",
 				zip: ""
+			}
+		};
+	};
+
+	function newSeason() {
+		//define local variables
+		var self = this;
+
+		return {
+			start: { day: "", month: "" },
+			end: { day: "", month: "" },
+			standardHrs: { open: "", close: "" },
+			frequency: {
+				selection: "",
+				otherDescription: ""
 			}
 		};
 	};

@@ -54,18 +54,51 @@ function cmeProfileEditor() {
 			firebaseService.update('object', 'cmeObject').then(function success(s) {
 				//console.log('success', s);
 			}).catch(function error(e) {
-				//console.log(e);
+				console.log(e);
 			});
 		};
 
 		self.addEngagment = function(key) {
+			//define local variables
+			var eventList = self.cmeCollection[self.focus].engagements;
 			
-			self.cmeCollection.$ref().child(self.focus).child('engagements').child(key).set(schemaFactory.newEngagment()).then(function success(s) {
-				console.log('success', s);
-			}).catch(function error(e) {
-				console.log(e);
-			});;
+			if(eventList == "") {
+				self.cmeCollection.$ref().child(self.focus).child('engagements').set({0: key}).then(function success(s) {
+					//console.log('success', s);
+				}).catch(function error(e) {
+					console.log(e);
+				});
+			} else {
+				var lastKey = 0;
+
+				Object.keys(eventList).forEach(function(evntKey) {
+					lastKey = parseInt(evntKey) + 1;
+				});
+				eventList[lastKey] = key;
+
+				self.cmeCollection.$ref().child(self.focus).child('engagements').set(eventList).then(function success(s) {
+					//console.log('success', s);
+				}).catch(function error(e) {
+					console.log(e);
+				});
+			}
 			
+		};
+
+		/*
+		*
+		*/
+		self.saveSeasonDate = function(bookend, value) {	
+			var GMTtime = new Date(value).toISOString();
+			var GMTSplit = GMTtime.split('Z');
+			var PSTtime = GMTSplit[0] + "-08:00";
+
+			//console.log()
+			self.cmeCollection[self.focus].general.season[bookend] = PSTtime
+
+			self.update();
+
+			self.placeholder='';
 		};
 	}
 

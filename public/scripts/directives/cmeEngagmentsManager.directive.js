@@ -17,7 +17,7 @@ function cmeEngagmentsManager() {
 		templateUrl: 'views/directives/cmeEngagmentsManager.directive.htm',
 		replace: true,
 		scope: {
-			engagments: "=",
+			cmeEngagObj: "=",
 			addSingle: "&"
 		},
 		link: linkFunc,
@@ -34,10 +34,8 @@ function cmeEngagmentsManager() {
 	function cmeEngagmentsManagerController($scope, $log, firebaseService, schemaFactory) {
 		//define local variables
 		var self = this;
-		self.engagmentsDB = firebaseService.read('object','engagmentsCollection');
+		self.engagmentsCollection = firebaseService.read('object','engagmentsCollection');
 		self.engagmentsList = firebaseService.read('array','engagmentsList');
-		
-		console.log(self.engagmentsDB);
 
 		//define private functions
 		function saveEngagmentToCME(key) {
@@ -80,7 +78,14 @@ function cmeEngagmentsManager() {
 		
 		self.batchAdd = function() { console.log('adding batch'); };
 
-		self.testing = function() { self.addSingle({key:'aoisdoinws'}); }
+		self.update = function() {
+			//console.log(self.cmelist, index, val);
+			firebaseService.update('object', 'engagmentsCollection').then(function success(s) {
+				console.log('success', s);
+			}).catch(function error(e) {
+				console.log(e);
+			});
+		};
 	}
 
 	//pass it back
