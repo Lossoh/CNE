@@ -9,18 +9,23 @@
 			</div>
 		</div>
 
-		{{vm.active}}
-		{{vm.username}}
-		{{vm.password}}
+		{{vm.active}} <br>
+		{{vm.credentials.username}} <br>
+		{{vm.credentials.password}}
 
 		<!--Collect the username & password with validation-->
 		<div class="row">
 			<!--Input-->
 			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 				<!--username directive-->
-				<login-username username="vm.username" active='vm.active.username'></login-username>
+				<login-username 	username="vm.credentials.username" 
+									active='vm.active.username'>
+				</login-username>
+
 				<!--password directive-->
-				<login-password password='vm.password' active='vm.active.password'></login-password>
+				<login-password 	password='vm.credentials.password' 
+									active='vm.active.password'>
+				</login-password>
 			</div>
 			
 			<!--Validation
@@ -41,7 +46,9 @@
 
 		<!--Login Link-->
 		<div class="row">
-			<button class='btn btn-success'>Login</button>
+			<button 	class='btn btn-success' 
+						ng-click='vm.submitCreds(vm.credentials.username, vm.credentials.password)'>
+			Login</button>
 		</div>
 
 	</div>

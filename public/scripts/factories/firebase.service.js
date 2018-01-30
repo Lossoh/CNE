@@ -16,10 +16,34 @@ function firebaseService($firebase, $firebaseObject, $firebaseArray) {
 			cmeObject: $firebaseObject(firebase.database().ref().child('cme')),
 			engagmentsCollection: $firebaseObject(firebase.database().ref().child('engagements'))
 		},
+		authenticateUser: authenticateUser,
 		create: create,
 		read: read,
 		update: update,
 		del: del
+	};
+
+
+	/*
+	*	
+	*/
+	function authenticateUser(email, password) {
+		//return async work
+		return new Promise(function (resolve, reject) {
+
+			firebase.auth().signInWithEmailAndPassword(email, password).then(function sucess(s) {
+
+				resolve(s);
+				
+			}).catch(function(error) {
+				// Handle Errors here.
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				reject({code: errorCode , message: errorMessage});
+
+			});
+		});
+
 	};
 
 	/*
